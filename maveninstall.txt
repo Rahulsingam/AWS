@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+
+
+
+
+
+# Go to /opt and download Maven
+cd /opt
+sudo curl -O https://downloads.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+
+# Extract and rename for simplicity
+sudo tar -xvzf apache-maven-3.9.6-bin.tar.gz
+sudo mv apache-maven-3.9.6 /opt/maven
+
+# Set up environment variables
+sudo tee /etc/profile.d/maven.sh > /dev/null <<EOF
+export M2_HOME=/opt/maven
+export PATH=\$M2_HOME/bin:\$PATH
+EOF
+
+# Make it executable and reload profile
+sudo chmod +x /etc/profile.d/maven.sh
+source /etc/profile.d/maven.sh
